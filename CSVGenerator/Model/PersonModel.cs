@@ -15,5 +15,16 @@ namespace CSVGenerator.Model
 
         [Core.CSVColumn("Salary", 2, Format = Core.CSVGenerator.DECIMAL_FORMAT)]
         public decimal Salary { get; set; }
+
+        [Core.CSVColumn("Age", 4)]
+        public int Age
+        {
+            get
+            {
+                var today = DateTime.Today;
+                int age = today.Year - BirthDate.Year;
+                return BirthDate > today.AddYears(-age) ? --age : age;
+            }
+        }
     }
 }
